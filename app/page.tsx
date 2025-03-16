@@ -31,7 +31,7 @@ export default function FeatureRequestPage() {
   const descriptionRef = useRef<HTMLTextAreaElement>(null)
   const searchParams = useSearchParams()
   const productId = searchParams.get("productId") || "default"
-  const productName = searchParams.get("productName") || "Product"
+  const productName = searchParams.get("productName")?.toUpperCase() || "PRODUCT"
   const { toast } = useToast()
 
   useEffect(() => {
@@ -162,7 +162,7 @@ export default function FeatureRequestPage() {
 
   return (
     <div className="container mx-auto py-8 px-4 max-w-5xl">
-      <h1 className="text-3xl font-bold mb-8 text-center">Feature Requests for {productName}</h1>
+      <h1 className="text-2xl mb-8 text-center">FEATURE REQUESTS FOR {productName}</h1>
 
       {/* Submission Form */}
       <Card className="mb-8 shadow-sm border border-border/40 overflow-hidden">
@@ -206,7 +206,7 @@ export default function FeatureRequestPage() {
               ) : (
                 <>
                   <Send className="mr-2 h-4 w-4" />
-                  Submit Request
+                  SUBMIT
                 </>
               )}
             </Button>
@@ -216,7 +216,7 @@ export default function FeatureRequestPage() {
 
       <Separator className="my-8" />
 
-      <h2 className="text-2xl font-bold mb-6">Current Requests</h2>
+      <h2 className="text-2xl mb-6">CURRENT REQUESTS</h2>
 
       {/* Feature Request List */}
       {isLoading ? (
@@ -250,7 +250,7 @@ export default function FeatureRequestPage() {
                 <div className="flex-1">
                   <CardHeader className="pb-2">
                     <div className="flex items-start justify-between">
-                      <CardTitle>{request.title}</CardTitle>
+                      <CardTitle className="text-sm font-medium">{request.title}</CardTitle>
                       <Badge
                         variant={getStatusBadgeVariant(request.status)}
                         className="uppercase text-[10px] font-bold tracking-wider"
