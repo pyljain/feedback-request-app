@@ -2,7 +2,7 @@ import { type NextRequest, NextResponse } from "next/server"
 import { voteOnFeatureRequest, getFeatureRequestById } from "@/lib/store"
 
 export async function POST(request: NextRequest, { params }: { params: { id: string } }) {
-  const id = params.id
+  const { id } = await params;
 
   try {
     const { direction } = await request.json()
